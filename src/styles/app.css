@@ -1,0 +1,103 @@
+.App {
+  text-align: left;
+  background-color: lightgray;
+  height: 700px;
+  width: 1000px;
+}
+
+.App h1 {
+  padding-top: 40px;
+  padding-left: 80px;
+  font-weight: 900;
+  /* font-size: larger; */
+}
+
+.container {
+  padding-left: 80px;
+  position: absolute;
+  height: 500px;
+  width: 800px;
+  display: grid;
+  grid-template-areas:
+    "picture-area accessorize-area"
+    "picture-area style-area"
+    "action-area style-area";
+  justify-content: center;
+}
+
+.action-area {
+  grid-area: action-area;
+  width: 400px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-area button {
+  height: 50px;
+  width: 45%;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 80px;
+  margin: 5px;
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+.picture-area {
+  grid-area: picture-area;
+  width: 400px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
+
+.picture-area img {
+  object-fit: cover;
+  width: 400px;
+  height: 400px;
+}
+
+.accessorize-area {
+  grid-area: accessorize-area;
+  width: 400px;
+  height: 200px;
+  padding-left: 40px;
+  padding-bottom: 30px;
+}
+
+.style-area {
+  grid-area: style-area;
+  width: 400px;
+  height: 300px;
+  padding-left: 40px;
+}
+
+.style-area-buttons {
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.accessorize-area button,
+.style-area button {
+  height: 40px;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 80px;
+  border-radius: 20px;
+  margin: 5px;
+  border-color: blue;
+  background-color: lightgrey;
+  border-style: solid;
+  color: blue;
+}
+
+.accessorize-area button:hover,
+.accessorize-area .selected,
+.style-area button:hover,
+.style-area .selected {
+  background-color: blue;
+  color: white;
+}
