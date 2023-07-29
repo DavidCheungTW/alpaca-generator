@@ -20,7 +20,7 @@ const randomFace = (styleData, setFace) => {
     backgrounds: "",
   };
 
-  Object.keys(styleData).map((key) => {
+  Object.keys(styleData).forEach((key) => {
     const arrayLen = styleData[key].length;
     const randomIndex = Math.floor(Math.random() * arrayLen);
     newFace[key] = styleData[key][randomIndex];
@@ -50,9 +50,15 @@ const App = () => {
       });
   };
 
+  console.log("currentStyle=", currentStyle);
+  console.log("currentType=", currentType);
+
   return (
     <div className="App" ref={elementRef}>
-      <h1>ALPACA GENERATOR</h1>
+      <div className="app-title">
+        <h1>ALPACA GENERATOR</h1>
+      </div>
+
       <div className="container">
         <div className="action-area">
           <button onClick={() => randomFace(styleData, setFace)}>
@@ -72,7 +78,7 @@ const App = () => {
               className={currentStyle === key ? "selected" : "notSelected"}
               onClick={() => {
                 setCurrentStyle(key);
-                setCurrentType("default");
+                setCurrentType(face[key]);
               }}
             >
               {firstCharCap(key)}
