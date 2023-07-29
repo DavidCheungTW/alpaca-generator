@@ -1,0 +1,35 @@
+.accessorize-area {
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+}
+
+.accessorize-area p {
+  margin: 0;
+  padding: 0;
+}
+
+.accessorize-area button {
+  height: 40px;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 80px;
+  border-radius: 20px;
+  margin: 5px;
+  border-color: rgb(45, 175, 255);
+  background-color: inherit;
+  border-style: solid;
+  color: rgb(45, 175, 255);
+}
+
+.accessorize-area button:hover,
+.accessorize-area .selected {
+  background-color: rgb(45, 175, 255);
+  color: white;
+}
+
+.accessorize-area button:hover {
+  cursor: pointer;
+}

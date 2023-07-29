@@ -1,8 +1,10 @@
 import "../styles/app.css";
 import { useState, useRef } from "react";
-import { BiSave } from "react-icons/bi";
-import { FaRandom } from "react-icons/fa";
 import { toPng } from "html-to-image";
+import ActionArea from "./ActionArea";
+import AccessorizeArea from "./AccessorizeArea";
+import StyleArea from "./StyleArea";
+import PictureArea from "./PictureArea";
 
 const firstCharCap = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -34,7 +36,6 @@ const App = () => {
   const [face, setFace] = useState(initFace);
   const [currentStyle, setCurrentStyle] = useState("hair");
   const [currentType, setCurrentType] = useState("default");
-  const { accessories, backgrounds, ears, eyes, hair, leg, mouth, neck } = face;
   const elementRef = useRef(null);
 
   const htmlToImageConvert = () => {
@@ -50,126 +51,41 @@ const App = () => {
       });
   };
 
-  console.log("currentStyle=", currentStyle);
-  console.log("currentType=", currentType);
-
   return (
-    <div className="App" ref={elementRef}>
+    <div className="App">
       <div className="app-title">
         <h1>ALPACA GENERATOR</h1>
       </div>
 
       <div className="container">
-        <div className="action-area">
-          <button onClick={() => randomFace(styleData, setFace)}>
-            <FaRandom />
-            Random
-          </button>
-          <button onClick={htmlToImageConvert}>
-            <BiSave />
-            Download
-          </button>
-        </div>
-        <div className="accessorize-area">
-          <p>ACCESSORIZE THE ALPACAS</p>
-          {Object.keys(styleData).map((key) => (
-            <button
-              key={key}
-              className={currentStyle === key ? "selected" : "notSelected"}
-              onClick={() => {
-                setCurrentStyle(key);
-                setCurrentType(face[key]);
-              }}
-            >
-              {firstCharCap(key)}
-            </button>
-          ))}
-        </div>
-        <div className="style-area">
-          <p>STYLE</p>
-          <div className="style-area-buttons">
-            {styleData[currentStyle].map((key) => (
-              <button
-                key={key}
-                className={currentType === key ? "selected" : "notSelected"}
-                onClick={() => {
-                  const newFace = { ...face };
-                  newFace[currentStyle] = key;
-                  setFace(newFace);
-                  setCurrentType(key);
-                }}
-              >
-                {firstCharCap(key)}
-              </button>
-            ))}
+        <div className="left-side">
+          <div ref={elementRef}>
+            <PictureArea face={face} />
           </div>
-        </div>
-
-        {backgrounds !== "clear" && (
-          <div className="picture-area">
-            <img
-              className="backgrounds"
-              src={`/images/alpaca/backgrounds/${backgrounds}.png`}
-              alt="backgrounds.png"
-            />
-          </div>
-        )}
-
-        <div className="picture-area">
-          <img
-            className="ears"
-            src={`/images/alpaca/ears/${ears}.png`}
-            alt="ears.png"
+          <ActionArea
+            randomFace={randomFace}
+            htmlToImageConvert={htmlToImageConvert}
+            styleData={styleData}
+            setFace={setFace}
           />
         </div>
-        <div className="picture-area">
-          <img
-            className="neck"
-            src={`/images/alpaca/neck/${neck}.png`}
-            alt="neck.png"
+        <div className="right-side">
+          <AccessorizeArea
+            styleData={styleData}
+            currentStyle={currentStyle}
+            setCurrentStyle={setCurrentStyle}
+            setCurrentType={setCurrentType}
+            face={face}
+            firstCharCap={firstCharCap}
           />
-        </div>
-        <div className="picture-area">
-          <img className="nose" src="/images/alpaca/nose.png" alt="nose.png" />
-        </div>
-
-        <div className="picture-area">
-          <img
-            className="hair"
-            src={`/images/alpaca/hair/${hair}.png`}
-            alt="hair.png"
-          />
-        </div>
-        {accessories !== "clear" && (
-          <div className="picture-area">
-            <img
-              className="accessories"
-              src={`/images/alpaca/accessories/${accessories}.png`}
-              alt="accessories.png"
-            />
-          </div>
-        )}
-        <div className="picture-area">
-          <img
-            className="leg"
-            src={`/images/alpaca/leg/${leg}.png`}
-            alt="leg.png"
-          />
-        </div>
-
-        <div className="picture-area">
-          <img
-            className="eyes"
-            src={`/images/alpaca/eyes/${eyes}.png`}
-            alt="eyes.png"
-          />
-        </div>
-
-        <div className="picture-area">
-          <img
-            className="mouth"
-            src={`/images/alpaca/mouth/${mouth}.png`}
-            alt="mouth.png"
+          <StyleArea
+            styleData={styleData}
+            currentStyle={currentStyle}
+            currentType={currentType}
+            face={face}
+            setFace={setFace}
+            setCurrentType={setCurrentType}
+            firstCharCap={firstCharCap}
           />
         </div>
       </div>

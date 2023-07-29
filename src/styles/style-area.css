@@ -1,0 +1,39 @@
+.style-area {
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  height: 300px;
+}
+.style-area p {
+  margin: 0;
+  padding: 0;
+}
+
+.style-area-buttons {
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.style-area button {
+  height: 40px;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 80px;
+  border-radius: 20px;
+  margin: 5px;
+  border-color: rgb(45, 175, 255);
+  background-color: inherit;
+  border-style: solid;
+  color: rgb(45, 175, 255);
+}
+
+.style-area button:hover,
+.style-area .selected {
+  background-color: rgb(45, 175, 255);
+  color: white;
+}
+
+.style-area button:hover {
+  cursor: pointer;
+}
